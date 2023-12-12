@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using NLog;
@@ -96,17 +97,12 @@ namespace Kugar.Core.Log
                 }
             }
 
-            public IDisposable BeginScope<TState>(TState state)
-            {
-                return this;
-            }
+            public IDisposable BeginScope<TState>(TState state) => default;
 
             public void Dispose()
             {
             }
         }
-
-
     }
 
     public static class NlogForIDExtMethod
@@ -120,5 +116,7 @@ namespace Kugar.Core.Log
         {
             factory.AddProvider(new NLoggerProviderForDI(nlogfactory));
         }
+
+  
     }
 }
